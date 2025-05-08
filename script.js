@@ -1,6 +1,6 @@
 const input = document.getElementById("taskInput");
 const button = document.getElementById("addTask");
-const task = document.getElementById("taskList");
+const taskList = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -11,12 +11,19 @@ tasks.forEach((taskText) => {
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Удалить";
   deleteBtn.addEventListener("click", () => {
-    task.removeChild(li);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskList.removeChild(li);
+    const newTasks = tasks.filter((task) => {
+      if (taskText === task) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
   });
 
   li.appendChild(deleteBtn);
-  task.appendChild(li);
+  taskList.appendChild(li);
 });
 
 button.addEventListener("click", () => {
@@ -32,12 +39,19 @@ button.addEventListener("click", () => {
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Удалить";
   deleteBtn.addEventListener("click", () => {
-    task.removeChild(li);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskList.removeChild(li);
+    const newTasks = tasks.filter((task) => {
+      if (taskText === task) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
   });
 
   li.appendChild(deleteBtn);
-  task.appendChild(li);
+  taskList.appendChild(li);
 
   tasks.push(taskText);
   localStorage.setItem("tasks", JSON.stringify(tasks));
